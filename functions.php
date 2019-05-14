@@ -17,6 +17,9 @@ function register_my_menu() {
 }
 add_action( 'init', 'register_my_menu' );
 
+//gutenbergs style
+add_theme_support( 'wp-block-styles' );
+
 // Register Custom Navigation Walker
 require_once get_template_directory() . '/assets/class-wp-bootstrap-navwalker.php';
 
@@ -30,3 +33,21 @@ require_once get_template_directory() . '/assets/class-wp-bootstrap-navwalker.ph
 // 	'fallback_cb'     => 'WP_Bootstrap_Navwalker::fallback',
 // 	'walker'          => new WP_Bootstrap_Navwalker(),
 // ) );
+
+//registering widgets
+add_action( 'widgets_init', 'add_sidebar' );
+
+function add_sidebar() {
+
+    register_sidebar( array(
+        'name' => __( 'Main Sidebar', '18wdwu07monday' ),
+        'id' => 'sidebar-1',
+        'description' => __( 'Widgets in this area will be shown on all posts and pages.', '18wdwu07monday' ),
+        'before_widget' => '<li id="%1$s" class="widget %2$s">',
+    	'after_widget'  => '</li>',
+    	'before_title'  => '<h2 class="widgettitle">',
+    	'after_title'   => '</h2>',
+        )
+    );
+
+}
